@@ -12,7 +12,7 @@ $ javac -d build src/**/*.java
 
 ```sh
 $ cd build
-./build$ jar cmvf ../src/METADATA-INF/MANIFEST.MF ../export.jar **/*.class
+$ jar cmvf ../src/METADATA-INF/MANIFEST.MF ../export.jar **/*.class
 ```
 
 ## data_files folder
