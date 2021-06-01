@@ -1,5 +1,5 @@
 public class Tally {
-    private float tally;
+    private double tally;
     private String date;
 
     public Tally(String date) {
@@ -10,14 +10,14 @@ public class Tally {
         return date;
     }
 
-    public void addTally(float tally) {
+    public void addTally(double tally) {
         this.tally += tally;
     }
 
-    public float getTally() {
+    public double getTally() {
         return tally;
     }
-    public void setTally(float tally) {
+    public void setTally(double tally) {
         this.tally = tally;
     }
 
