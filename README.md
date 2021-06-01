@@ -17,5 +17,5 @@ $ jar cmvf ../src/METADATA-INF/MANIFEST.MF ../export.jar **/*.class
 
 ## data_files folder
 
-The folder to put (probably Google Maps) CSVs with 11 columns of the routes.  
+The folder to put CSVs from CanWay's exports to (should have 11 columns).  
 I'd have preferred if it was an argument to specify where to get these files from, but such is the implementation specification.
