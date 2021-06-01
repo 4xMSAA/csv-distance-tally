@@ -26,12 +26,12 @@ public class App {
         });
 
         String lastKnownPathString = "";
+        PolarCoordinates lastCoords = null;
         for (String pathString : paths) {
             try {
 
                 BufferedReader br = Files.newBufferedReader(Path.of(pathString));
                 String line;
-                PolarCoordinates lastCoords = null;
 
                 while ((line = br.readLine()) != null) {
 
@@ -42,6 +42,7 @@ public class App {
                         tally = new Tally(date);
                     } else if (!tally.getDate().equals(date)) {
                         exportResults(lastKnownPathString, tally);
+                        lastCoords = null;
                         tally = new Tally(date);
                     }
 
@@ -65,17 +66,16 @@ public class App {
 
     }
 
-    // will most likely fail in extreme cases where one switches from N to S or E to W and vice versa
     public static double calcDistanceFromPolarCoords(PolarCoordinates polarCoords1, PolarCoordinates polarCoords2) {
         double earthRadiusKm = 6371;
 
         double deltaLat = Math.toRadians(polarCoords2.getLatitude() - polarCoords1.getLatitude());
         double deltaLon = Math.toRadians(polarCoords2.getLongitude() - polarCoords1.getLongitude());
 
-        double lat1 = polarCoords1.getLatitude();
-        double lat2 = polarCoords2.getLatitude();
+        double lat1 = Math.toRadians(polarCoords1.getLatitude());
+        double lat2 = Math.toRadians(polarCoords2.getLatitude());
 
-        double a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) + Math.sin(deltaLon/2) * Math.sin(deltaLon/2) * Math.cos(lat1) * Math.cos(lat2);
+        double a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return earthRadiusKm * c;
