@@ -1,6 +1,6 @@
 # CSV Distance Tally
 
-Yet another school project, sums up the kilometres, giving you the total distance on that date.
+Yet another school project, calculates the change in degrees to get distance travelled
 
 ## Building and distributing
 
